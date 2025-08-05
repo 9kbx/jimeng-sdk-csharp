@@ -4,6 +4,11 @@ on:
   push:
     tags:
     - 'v*'
+
+permissions:
+  contents: read
+  packages: write # 这行是关键！
+
 jobs:
   build:
     runs-on: ubuntu-latest
