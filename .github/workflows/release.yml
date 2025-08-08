@@ -28,8 +28,9 @@ jobs:
       - name: Test
         run: dotnet test --verbosity normal
       - name: Pack NuGet
-        run: dotnet pack -c Release -o ./  -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-#      - name: Push to GitHub Packages
-#        run: dotnet nuget push "*.nupkg" --source "https://nuget.pkg.github.com/9kbx/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+#        run: dotnet pack -c Release -o ./  -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        run: dotnet pack JimengSDK/JimengSDK.csproj -c Release -o ./  -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+      - name: Push to GitHub Packages
+        run: dotnet nuget push "*.nupkg" --source "https://nuget.pkg.github.com/9kbx/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
       - name: Push NuGet
         run: dotnet nuget push '*.nupkg' -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
